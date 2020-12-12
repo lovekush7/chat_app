@@ -1,6 +1,7 @@
 const path = require('path');
 const http = require('http');
 const express = require('express');
+const cors = require('cors');
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
 const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./utils/users')
@@ -9,6 +10,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+
+app.use(cors());
 //Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
